@@ -1,8 +1,21 @@
 package com.example.spotifycloneapp.exoplayer
 
+import android.support.v4.media.MediaMetadataCompat
+import com.example.spotifycloneapp.data.remote.MusicDatabase
 import com.example.spotifycloneapp.exoplayer.State.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class FirebaseMusicSource {
+class FirebaseMusicSource @Inject constructor(
+    private val musicDatabase: MusicDatabase
+){
+
+    var songs = emptyList<MediaMetadataCompat>()
+
+    suspend fun fetchMediaData() = withContext(Dispatchers.IO){
+
+    }
 
     private val onReadyListeners = mutableListOf<(Boolean) -> Unit>()
 
