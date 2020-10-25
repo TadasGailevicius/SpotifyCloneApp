@@ -61,9 +61,8 @@ class FirebaseMusicSource @Inject constructor(
             .setMediaId(song.description.mediaId)
             .setIconUri(song.description.iconUri)
             .build()
-
         MediaBrowserCompat.MediaItem(desc, FLAG_PLAYABLE)
-    }
+    }.toMutableList()
 
     private val onReadyListeners = mutableListOf<(Boolean) -> Unit>()
 
