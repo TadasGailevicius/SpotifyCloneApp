@@ -7,6 +7,7 @@ import com.bumptech.glide.RequestManager
 import com.example.spotifycloneapp.R
 import com.example.spotifycloneapp.adapters.SwipeSongAdapter
 import com.example.spotifycloneapp.data.entities.Song
+import com.example.spotifycloneapp.exoplayer.toSong
 import com.example.spotifycloneapp.other.Status
 import com.example.spotifycloneapp.other.Status.*
 import com.example.spotifycloneapp.ui.viewmodels.MainViewModel
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        subscribeToObservers()
 
         vpSong.adapter = swipeSongAdapter
     }
@@ -65,7 +67,9 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.curPlayingSong.observe(this){
             if(it == null) return@observe
 
-            curPlayingSong = it
+            curPlayingSong = it.toSong()
+            glide.load(curPlayingSong?.imageUrl).into(ivCurSongImage)
+            switchViewPagerToCurrentSong(curPlayingSong ?: return@observe)
         }
 
     }
