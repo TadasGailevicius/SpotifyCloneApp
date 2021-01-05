@@ -2,6 +2,8 @@ package com.example.spotifycloneapp.other
 
 object Constants {
 
+    const val DEFAULT_PROFILE_PICTURE_URL = ""
+
     const val SONG_COLLECTION = "songs"
 
     const val MEDIA_ROOT_ID = "root_id"
